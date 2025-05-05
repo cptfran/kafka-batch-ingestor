@@ -30,7 +30,9 @@ jobs:
           cache: maven
       
       - name: Build and test with Maven
-        run: ./mvnw clean verify
+        run: |
+          chmod +x mvnw
+          ./mvnw clean verify
       
       - name: Store build artifacts
         uses: actions/upload-artifact@v4
