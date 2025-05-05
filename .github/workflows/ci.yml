@@ -33,6 +33,36 @@ jobs:
         run: |
           chmod +x mvnw
           ./mvnw clean verify
+
+           - name: Display Test Summaries
+        if: failure()
+        run: |
+          echo "=== First 50 lines of test reports ==="
+          head -n 50 target/surefire-reports/*.txt || true
+          
+          echo "=== Last 50 lines of test reports ==="
+          tail -n 50 target/surefire-reports/*.txt || true
+          
+          echo "=== Searching for errors ==="
+          grep -r "ERROR" target/surefire-reports/ || true
+      
+      - name: Upload Surefire Reports
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: surefire-reports
+          path: target/surefire-reports/
+          retention-days: 5
+      
+      - name: Upload Test Logs
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: maven-logs
+          path: |
+            target/logs/
+            target/*.log
+          retention-days: 5
           
       - name: Display test reports
         if: failure()
