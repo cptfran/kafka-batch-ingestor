@@ -32,14 +32,20 @@ jobs:
       - name: Build and test with Maven
         run: |
           chmod +x mvnw
-          ./mvnw clean verify -X
-      
-      - name: Store build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-jar
-          path: target/*.jar
-          retention-days: 5
+          ./mvnw clean verify
+          
+      - name: Display test reports
+        if: failure()
+        run: |
+          cat target/surefire-reports/*.txt
+          cat target/surefire-reports/*.xml
+            
+            - name: Store build artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: app-jar
+                path: target/*.jar
+                retention-days: 5
 
   build-python-producer:
     runs-on: ubuntu-latest
