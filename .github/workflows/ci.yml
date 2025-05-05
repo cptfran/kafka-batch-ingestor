@@ -34,7 +34,7 @@ jobs:
           chmod +x mvnw
           ./mvnw clean verify
 
-           - name: Display Test Summaries
+      - name: Display Test Summaries
         if: failure()
         run: |
           echo "=== First 50 lines of test reports ==="
