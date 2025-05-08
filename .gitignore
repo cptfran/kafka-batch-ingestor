@@ -4,7 +4,6 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 /venv/
-.env
 
 ### STS ###
 .apt_generated
@@ -33,3 +32,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Secrets ###
+.env
+
+### macOS ###
+.DS_Store
