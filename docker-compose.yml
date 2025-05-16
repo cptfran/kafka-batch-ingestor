@@ -23,7 +23,7 @@ services:
     healthcheck:
       test: ["CMD", "echo", "ru", "|", "nc", "localhost", "2181"]
       interval: 10s
-      timeout: 5s
+      timeout: 5
       retries: 5
 
   kafka:

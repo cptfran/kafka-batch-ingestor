@@ -22,7 +22,7 @@ public class Transaction {
 	private Instant timestamp;
 
 	@Column(nullable = false)
-	private long amount;
+	private double amount;
 
 	public enum TransactionType {
 		DEPOSIT,
@@ -39,7 +39,7 @@ public class Transaction {
 		
 	}
 
-	public Transaction(long accountId, Instant timestamp, long amount, TransactionType type, boolean isSuspicious) {
+	public Transaction(long accountId, Instant timestamp, double amount, TransactionType type, boolean isSuspicious) {
 		this.accountId = accountId;
 		this.timestamp = timestamp;
 		this.amount = amount;
@@ -67,11 +67,11 @@ public class Transaction {
 		this.timestamp = timestamp;
 	}
 
-	public long getAmount() {
+	public double getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(long amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
